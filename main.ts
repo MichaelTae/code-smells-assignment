@@ -38,22 +38,38 @@ function getStudentStatus(student: Student): string {
     Det finns flera code smells att identifiera här. Vissa är lurigare än andra.
     */
 
-class Temp {
-  constructor(public q: string, public where: Date, public v: number) {}
+class Temperature {
+  constructor(
+    public city: string,
+    public week: Date,
+    public temperature: number
+  ) {}
 }
 
-function averageWeeklyTemperature(heights: Temp[]) {
-  let r = 0;
+function averageWeeklyTemperature(readings: Temperature[]) {
+  // let result = 0;
+  // let pastWeek = Date.now() - 604800000;
 
-  for (let who = 0; who < heights.length; who++) {
-    if (heights[who].q === 'Stockholm') {
-      if (heights[who].where.getTime() > Date.now() - 604800000) {
-        r += heights[who].v;
-      }
-    }
-  }
+  // for(let i = 0; i< readings.length; i++) {
+  //   if(readings[i].city === 'Stockholm' && readings[i].week.getTime()> pastWeek){
+  //     result += readings[i].temperature
+  //   }
+  // }
 
-  return r / 7;
+  // return result / 7;
+
+  let pastWeek = Date.now() - 604800000;
+
+  return (
+    readings
+      .filter(
+        (reading) =>
+          reading.city === 'Stockholm' && reading.week.getTime() > pastWeek
+      )
+      .reduce((sum, reading) => sum + reading.temperature, 0) / 7
+  );
+
+  // två alternativ en med samma struktur men bättre variabel namn och en med lite svårare syntax + bättre variabelnamn
 }
 
 /*
