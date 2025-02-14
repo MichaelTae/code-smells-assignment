@@ -150,20 +150,57 @@ function concatenateStrings() {
       fler och fler parametrar behöver läggas till? T.ex. avatar eller adress. Hitta en bättre
       lösning som är hållbar och skalar bättre. 
   */
-function createUser(
-  name: string,
-  birthday: Date,
-  email: string,
-  password: string
-) {
-  // Validation
 
-  let ageDiff = Date.now() - birthday.getTime();
+// Alternativ 1 med ett objekt som parameter
+function createUser(user: {
+  name: string;
+  birthday: Date;
+  email: string;
+  password: string;
+}) {
+  let ageDiff = Date.now() - user.birthday.getTime();
   let ageDate = new Date(ageDiff);
   let userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+  if (!(userAge < 20)) {
+    // Logik för att skapa en användare
+  } else {
+    return 'Du är under 20 år';
+  }
+}
 
-  console.log(userAge);
+// Alternativ 2 med en klass som parameter
+class User {
+  constructor(
+    public name: string,
+    public birthday: Date,
+    public email: string,
+    public password: string
+  ) {}
+}
 
+function createUserByClass(user: User) {
+  let ageDiff = Date.now() - user.birthday.getTime();
+  let ageDate = new Date(ageDiff);
+  let userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+  if (!(userAge < 20)) {
+    // Logik för att skapa en användare
+  } else {
+    return 'Du är under 20 år';
+  }
+}
+
+// Alternativ 3 med interface som parameter
+interface UserInterface {
+  name: string;
+  birthday: Date;
+  email: string;
+  password: string;
+}
+
+function createUserByInterface(user: UserInterface) {
+  let ageDiff = Date.now() - user.birthday.getTime();
+  let ageDate = new Date(ageDiff);
+  let userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
   if (!(userAge < 20)) {
     // Logik för att skapa en användare
   } else {
