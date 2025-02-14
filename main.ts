@@ -85,18 +85,29 @@ function showProduct(
   image: string,
   parent: HTMLElement
 ) {
-  let container = document.createElement('div');
-  let title = document.createElement('h4');
-  let pris = document.createElement('strong');
-  let imageTag = document.createElement('img');
+  const container = document.createElement('div'),
+    productName = document.createElement('h4'),
+    productPrice = document.createElement('span'),
+    productAmount = document.createElement('input'),
+    productDescription = document.createElement('p'),
+    productImage = document.createElement('img'),
+    productAmountContainer = document.createElement('div');
 
-  title.innerHTML = name;
-  pris.innerHTML = price.toString();
-  imageTag.src = image;
+  productName.innerHTML = name;
+  productPrice.innerHTML = `${price}`;
+  productAmount.type = 'number';
+  productAmount.value = `${amount}`;
+  productDescription.innerHTML = description;
+  productImage.src = image;
+  productImage.alt = `image of ${name}`;
 
-  container.appendChild(title);
-  container.appendChild(imageTag);
-  container.appendChild(pris);
+  productAmountContainer.append(productPrice, productAmount);
+  container.append(
+    productImage,
+    productName,
+    productAmountContainer,
+    productDescription
+  );
   parent.appendChild(container);
 }
 
