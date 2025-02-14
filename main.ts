@@ -23,18 +23,14 @@ class Student {
 }
 
 function getStudentStatus(student: Student): string {
-  student.passed =
-    student.name == 'Sebastian'
-      ? student.handedInOnTime
-        ? true
-        : false
-      : false;
+  // return student.name == 'Sebastian' && student.handedInOnTime && student.passed ? 'VG' : 'IG';
 
-  if (student.passed) {
+  if (student.name == 'Sebastian' && student.handedInOnTime && student.passed) {
     return 'VG';
-  } else {
-    return 'IG';
   }
+  return 'IG';
+
+  // Två alternativ med ternary operator och utan
 }
 
 /*
