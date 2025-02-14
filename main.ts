@@ -136,14 +136,12 @@ function presentStudents(students: Student[]) {
     Exemplet under löser problemet, men inte speciellt bra. Hur kan man göra istället?
     */
 function concatenateStrings() {
-  let result = '';
-  result += 'Lorem';
-  result += 'ipsum';
-  result += 'dolor';
-  result += 'sit';
-  result += 'amet';
-
+  const result = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet'].join(' ');
   return result;
+
+  //alternativt
+
+  // return ['Lorem', 'ipsum', 'dolor', 'sit', 'amet'].join(' ');
 }
 
 /* 
